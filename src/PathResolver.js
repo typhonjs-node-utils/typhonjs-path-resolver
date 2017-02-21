@@ -29,6 +29,28 @@ export default class PathResolver
    }
 
    /**
+    * Gets the absolute file path.
+    *
+    * @returns {string}
+    */
+   get absolutePath()
+   {
+      return this._slash(this._filePath);
+   }
+
+   /**
+    * Gets the file path that is the relative path from the root dir.
+    *
+    * @returns {string}
+    */
+   get filePath()
+   {
+      const relativeFilePath = path.relative(this._rootPath, this._filePath);
+
+      return this._slash(relativeFilePath);
+   }
+
+   /**
     * Gets import path that is considered package name or main file and path prefix.
     *
     * @returns {string}
@@ -65,28 +87,6 @@ export default class PathResolver
       }
 
       return this._slash(filePath);
-   }
-
-   /**
-    * Gets the absolute file path.
-    *
-    * @returns {string}
-    */
-   get absolutePath()
-   {
-      return this._slash(this._filePath);
-   }
-
-   /**
-    * Gets the file path that is the relative path from the root dir.
-    *
-    * @returns {string}
-    */
-   get filePath()
-   {
-      const relativeFilePath = path.relative(this._rootPath, this._filePath);
-
-      return this._slash(relativeFilePath);
    }
 
    /**
