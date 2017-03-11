@@ -189,20 +189,3 @@ export default class PathResolver
       return filePath;
    }
 }
-
-/**
- * Wires up PathResolver on the plugin eventbus.
- *
- * @param {PluginEvent} ev - The plugin event.
- *
- * @ignore
- */
-export function onPluginLoad(ev)
-{
-   const eventbus = ev.eventbus;
-
-   eventbus.on('tjsdoc:create:path:resolver', (rootPath, filePath, packageName = void 0, mainFilePath = void 0) =>
-   {
-      return new PathResolver(rootPath, filePath, packageName, mainFilePath);
-   });
-}
